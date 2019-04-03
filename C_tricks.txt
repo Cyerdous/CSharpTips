@@ -1,0 +1,138 @@
+C# tricks!
+
+Printing things w/ WriteLine();
+	WriteLine("{0}",var1); 		// prints var1
+	WriteLine(@"¯\_(?)_/¯"); 	//prints "¯\_(?)_/¯" without worrying about having triple arms
+								// is a verbatim string
+	WriteLine($"{name} is {age} year{(age == 1 ? "" : "s")} old.");
+	
+Verbatim strings
+	@”\\” -> \\
+	
+Interpolated strings
+	WriteLine($"{variable_name} prints successfully");
+	
+	Can use verbatim interpolated strings with $@""
+		$@"This is a verbatim interpolated string."
+
+Lambda functions
+	int highScoreCount = scores.Where(n => n > 80).Count();
+	
+	func(Action<T> value)
+		allows you to use value in a lambda
+		func(x => Console.WriteLine(x));
+		
+	func(Func<T,T> FuncName){Console.WriteLine(Func(x))}
+		allows passing in a function into the function via a lambda
+		func(x => x.toUpper()) //
+		
+	
+							//Learn this and other things lambda functions can do.
+	
+LINQ (access SQL in C#)
+	IEnumerable<int> scoreQuery = 
+		from score in scores 
+		where score > 80 
+		select score;		//Spend some time learning, this is nowhere near
+						 	//all of what linq does.
+
+Default Keyword
+	T t = default(T);
+		//so bool returns false
+		//and int returns 0
+
+Nullable types (generics storing null) & ?? operator
+	double? num1 = null;
+	double num2 = num1 ?? -100; // num2 == -100 because num1 == null
+								// ?? operator can be chained
+	
+	private IList<Foo> _foo;	// automagic instantiation
+
+		public IList<Foo> ListOfFoo 
+		{ get { return _foo ?? (_foo = new List<Foo>()); } }
+
+Quick program exit (winforms but w/e)
+	Environment.FailFast(); //aka crash it yourself
+	
+ternary operator
+	x = (x==1) ? 2 : 3; 
+	is if(x==1) {x = 2;} else {x = 3;}
+	
+Quick array access
+	return new[] { "apple", "orange", "banana", "pear" }.Contains(fruit); // apparently inefficient?
+	//can use object w/ static array, not sure about impact
+	
+	.Count() //returns length of the list
+	.Contains(T item) // returns true if the list contains the item
+	.Where(/*lambda expression*/) //returns a array/list of items that meet the criteria
+
+String stuff
+	String.IsNullOrWhiteSpace(String value);
+	String.IsNullOrEmpty(String value);
+	
+Object initializers can be inline
+	Employee emp = new Employee {Name="John Smith", StartDate=DateTime.Now()};
+
+Http
+	using System.Net.Http;
+	var http = new HttpClient();
+	var response = await http.GetAsync(path);
+	if(response.IsSuccessStatusCode)
+	{
+		return await response.Content.ReadAsStringAsync();
+	}
+	
+--- JSON.NET ---
+
+Deserialization
+	// Make sure to understand what the object type of the json file is, so you can pick your data out easier
+		class MovieList
+		{
+			public Movie[] results;
+		}
+
+		static Movie[] ParseMovieJson(string json)
+		{
+			MovieList movies = JsonConvert.DeserializeObject<MovieList>(json);
+			return movies.results;
+		}
+	
+	JsonConvert.DeserializeObject<T>(String json);
+	// returns an object of type T, based on the results of the json string passed in
+	
+	[JsonProperty("json_path")]
+	T name { get; set; }
+	//points the item pointed to by json_path at the variable for deserialization
+	
+Serialization
+	JsonConvert.SerializeObject(object);
+	//returns a string that contains all the object parameters and the stored information.
+
+---	XAMARIN.FORMS ---
+
+Debug.WriteLine() //for general console debugging a la Console.WriteLine()
+
+Switch(Device.RuntimePlatform) //Returns type of platform
+{
+	case Device.iOS:
+	case Device.android:
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
