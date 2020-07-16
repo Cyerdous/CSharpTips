@@ -1,13 +1,15 @@
 C# tricks!
 
+Above all else, docs.microsoft.com is your friend.
+
 Printing things w/ WriteLine();
 	WriteLine("{0}",var1); 		// prints var1
-	WriteLine(@"¯\_(?)_/¯"); 	//prints "¯\_(?)_/¯" without worrying about having triple arms
+	WriteLine(@"Â¯\_(?)_/Â¯"); 	//prints "Â¯\_(?)_/Â¯" without worrying about having triple arms
 								// is a verbatim string
 	WriteLine($"{name} is {age} year{(age == 1 ? "" : "s")} old.");
 	
 Verbatim strings
-	@”\\” -> \\
+	@â€\\â€ -> \\
 	
 Interpolated strings
 	WriteLine($"{variable_name} prints successfully");
@@ -35,6 +37,8 @@ LINQ (access SQL in C#)
 		where score > 80 
 		select score;		//Spend some time learning, this is nowhere near
 						 	//all of what linq does.
+							
+	scoreQuery = scores.Select(x => x > 80).ToList(); Function based version of linq, type safety!
 
 Default Keyword
 	T t = default(T);
@@ -50,6 +54,8 @@ Nullable types (generics storing null) & ?? operator
 
 		public IList<Foo> ListOfFoo 
 		{ get { return _foo ?? (_foo = new List<Foo>()); } }
+		
+		//This is actually how singletons work I think
 
 Quick program exit (winforms but w/e)
 	Environment.FailFast(); //aka crash it yourself
@@ -65,6 +71,8 @@ Quick array access
 	.Count() //returns length of the list
 	.Contains(T item) // returns true if the list contains the item
 	.Where(/*lambda expression*/) //returns a array/list of items that meet the criteria
+	
+	// ^ are linq functions
 
 String stuff
 	String.IsNullOrWhiteSpace(String value);
@@ -82,7 +90,10 @@ Http
 		return await response.Content.ReadAsStringAsync();
 	}
 	
---- JSON.NET ---
+Abstract Classes Vs. Interfaces
+	Abstract Classes allow building default implementations that inheritors can override while interfaces just define those functions.
+	
+--- JSON.NET ---   -> Look at System.Text.Json instead
 
 Deserialization
 	// Make sure to understand what the object type of the json file is, so you can pick your data out easier
@@ -117,8 +128,6 @@ Switch(Device.RuntimePlatform) //Returns type of platform
 	case Device.iOS:
 	case Device.android:
 }
-
-
 
 
 
