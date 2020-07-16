@@ -1,0 +1,2 @@
+This guy's interview post-mortem. Everything he talks about are things you should understand.
+-https://www.reddit.com/r/csharp/comments/hs1u1e/post_mortem_how_to_prepare_for_an_interview_uno/?ref=share&ref_source=link
