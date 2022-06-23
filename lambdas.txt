@@ -1,0 +1,10 @@
+Lambda functions
+	int highScoreCount = scores.Where(n => n > 80).Count();
+	
+	func(Action<T> value)
+		allows you to use value in a lambda
+		func(x => Console.WriteLine(x));
+		
+	func(Func<T,T> FuncName){Console.WriteLine(Func(x))}
+		allows passing in a function into the function via a lambda
+		func(x => x.toUpper()) //

@@ -1,0 +1,26 @@
+Overview of the System.Linq library
+
+https://docs.microsoft.com/en-us/dotnet/csharp/linq/linq-in-csharp
+						
+
+LINQ can be used to use sql-esque queries directly against a list, array, or IEnumerable in c#.
+
+	IEnumerable<int> scoreQuery = 
+		from score in scores // scores is an int[]
+		where score > 80 
+		select score;	
+
+IQueryable variables can be queried using function notation
+
+	var greaterThanTen = numbers.Where(x => x < 10).ToList(); //where numbers and greaterThanTen are of type List<int>
+	// List<T> implements the IQueryable interface
+
+Quick array access
+	return new[] { "apple", "orange", "banana", "pear" }.Contains(fruit); // apparently inefficient?
+	//can use object w/ static array, not sure about impact
+	
+	.Count() //returns length of the list
+	.Contains(T item) // returns true if the list contains the item
+	.Where(/*lambda expression*/) //returns a array/list of items that meet the criteria
+	
+	// ^ are linq functions

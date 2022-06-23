@@ -1,0 +1,26 @@
+--- JSON.NET ---   -> Look at System.Text.Json instead
+
+Deserialization
+	// Make sure to understand what the object type of the json file is, so you can pick your data out easier
+		class MovieList
+		{
+			public Movie[] results;
+		}
+
+		static Movie[] ParseMovieJson(string json)
+		{
+			MovieList movies = JsonConvert.DeserializeObject<MovieList>(json);
+			return movies.results;
+		}
+	
+	JsonConvert.DeserializeObject<T>(String json);
+	// returns an object of type T, based on the results of the json string passed in
+	
+	[JsonProperty("json_path")]
+	T name { get; set; }
+	//points the item pointed to by json_path at the variable for deserialization
+	
+Serialization
+	JsonConvert.SerializeObject(object);
+	//returns a string that contains all the object parameters and the stored information.
+   

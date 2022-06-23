@@ -1,0 +1,20 @@
+c# baseline string features:
+
+Printing things w/ Console.WriteLine():
+	WriteLine("{0}",var1); 		// prints the value stored in var1
+	WriteLine(@"¯\_(?)_/¯"); 	//prints "¯\_(?)_/¯" without worrying about having triple arms
+								// is a verbatim string
+	WriteLine($"{name} is {age} year{(age == 1 ? "" : "s")} old.");
+	
+Verbatim strings:
+	@”\\” -> \\ vs "\\" -> \
+	
+Interpolated strings:
+	WriteLine($"{variable_name} prints successfully");
+	
+Verbatim and interpolated strings can be combined into verbatim interpolated strings 
+	$@"This is a verbatim interpolated string."
+
+Useful String functions:
+	String.IsNullOrWhiteSpace(String value);
+	String.IsNullOrEmpty(String value);
